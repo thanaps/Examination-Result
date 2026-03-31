@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Result</title>
+
+<style>
+body {
+    font-family: Arial;
+    padding: 10px;
+}
+
+.section {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+h4 {
+    margin: 5px 0 10px;
+}
+
+input {
+    width: 22%;
+    padding: 10px;
+    margin: 5px 1%;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<h3>📊 Examination Result</h3>
+
+<div class="section">
+<h4>Mathematics</h4>
+<input id="inputMath_attempt" type="number" placeholder="ทำไป" oninput="Generate_result()">
+<input id="inputMath_correct" type="number" placeholder="ถูก" oninput="Generate_result()">
+<input id="inputMath_total" type="number" placeholder="ทั้งหมด" oninput="Generate_result()">
+<input id="inputMath_time" type="number" placeholder="เวลา (นาที)" oninput="Generate_result()">
+<p id="resultMath_acc"></p>
+<p id="resultMath_time"></p>
+</div>
+
+<div class="section">
+<h4>Physics</h4>
+<input id="inputPhy_attempt" type="number" placeholder="ทำไป" oninput="Generate_result()">
+<input id="inputPhy_correct" type="number" placeholder="ถูก" oninput="Generate_result()">
+<input id="inputPhy_total" type="number" placeholder="ทั้งหมด" oninput="Generate_result()">
+<input id="inputPhy_time" type="number" placeholder="เวลา (นาที)" oninput="Generate_result()">
+<p id="resultPhy_acc"></p>
+<p id="resultPhy_time"></p>
+</div>
+
+<div class="section">
+<h4>General Knowledge</h4>
+<input id="inputGen_attempt" type="number" placeholder="ทำไป" oninput="Generate_result()">
+<input id="inputGen_correct" type="number" placeholder="ถูก" oninput="Generate_result()">
+<input id="inputGen_total" type="number" placeholder="ทั้งหมด" oninput="Generate_result()">
+<input id="inputGen_time" type="number" placeholder="เวลา (นาที)" oninput="Generate_result()">
+<p id="resultGen_acc"></p>
+<p id="resultGen_time"></p>
+</div>
+
+<div class="section">
+<h4>Aptitude</h4>
+<input id="inputApt_attempt" type="number" placeholder="ทำไป" oninput="Generate_result()">
+<input id="inputApt_correct" type="number" placeholder="ถูก" oninput="Generate_result()">
+<input id="inputApt_total" type="number" placeholder="ทั้งหมด" oninput="Generate_result()">
+<input id="inputApt_time" type="number" placeholder="เวลา (นาที)" oninput="Generate_result()">
+<p id="resultApt_acc"></p>
+<p id="resultApt_time"></p>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
