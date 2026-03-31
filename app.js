@@ -13,18 +13,19 @@ function calSection(idAttempt, idCorrect, idTotal, idTime, idAcc, idTimeResult) 
     let total = Number(document.getElementById(idTotal).value)
     let time = Number(document.getElementById(idTime).value)
 
-    if (isNaN(attempt) || isNaN(correct) || isNaN(total) || total === 0) {
-        document.getElementById(idAcc).innerHTML = "❌ Invalid input"
+    // ❌ กรอกไม่ครบ หรือเป็น 0
+    if (!attempt || !correct || !total || !time || attempt === 0 || total === 0) {
+        document.getElementById(idAcc).innerHTML = "❌ Invalid"
         document.getElementById(idTimeResult).innerHTML = "-"
         return
     }
 
     let accuracy = correct / attempt
     let score = correct * accuracy
-    let percent = (correct / total) * 100
+    let percent = (score / total) * 100
     let timePerItem = time / attempt
 
-    // 🎯 ระดับ
+    // 🎯 คะแนน
     let level = "", color = "", emoji = ""
     if (percent >= 80) {
         level = "ดี"; color = "green"; emoji = "🔥"
@@ -46,7 +47,7 @@ function calSection(idAttempt, idCorrect, idTotal, idTime, idAcc, idTimeResult) 
 
     document.getElementById(idAcc).innerHTML =
         `<span style="color:${color}">
-        ${emoji} ${score.toFixed(2)} คะแนน (${level})
+        ${emoji} ${percent.toFixed(2)}% (${level})
         </span>`
 
     document.getElementById(idTimeResult).innerHTML =
