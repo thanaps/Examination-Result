@@ -24,6 +24,7 @@ function calSection(idAttempt, idCorrect, idTotal, idTime, idAcc, idTimeResult) 
     let score = correct * accuracy
     let percent = (score / total) * 100
     let timePerItem = time / attempt
+    let timeLevel = "", timeColor = "", timeEmoji = ""
 
     // 🎯 คะแนน
     let level = "", color = "", emoji = ""
@@ -36,22 +37,43 @@ function calSection(idAttempt, idCorrect, idTotal, idTime, idAcc, idTimeResult) 
     }
 
     // ⏱️ เวลา
-    let timeLevel = "", timeColor = "", timeEmoji = ""
-    if (timePerItem <= 1) {
-        timeLevel = "เร็ว"; timeColor = "green"; timeEmoji = "⚡"
-    } else if (timePerItem <= 2) {
-        timeLevel = "ปานกลาง"; timeColor = "orange"; timeEmoji = "⏳"
+    // 👇 ถ้าเป็น Aptitude ใช้หน่วยวินาที
+    if (idTime.includes("Apt")) {
+    
+        let timePerItemSec = (time * 60) / attempt  // แปลงนาที → วินาที
+    
+        if (timePerItemSec < 15) {
+            timeLevel = "ดี"; timeColor = "green"; timeEmoji = "⚡"
+        } else if (timePerItemSec < 30) {
+            timeLevel = "ปานกลาง"; timeColor = "orange"; timeEmoji = "⏳"
+        } else {
+            timeLevel = "ช้า"; timeColor = "red"; timeEmoji = "🐢"
+        }
+    
+        document.getElementById(idTimeResult).innerHTML =
+            `<span style="color:${timeColor}">
+            ${timeEmoji} ${timePerItemSec.toFixed(2)} วินาที/ข้อ (${timeLevel})
+            </span>`
+    
     } else {
-        timeLevel = "ช้า"; timeColor = "red"; timeEmoji = "🐢"
+    
+        // วิชาอื่น (นาที)
+        if (timePerItem <= 1) {
+            timeLevel = "เร็ว"; timeColor = "green"; timeEmoji = "⚡"
+        } else if (timePerItem <= 2) {
+            timeLevel = "ปานกลาง"; timeColor = "orange"; timeEmoji = "⏳"
+        } else {
+            timeLevel = "ช้า"; timeColor = "red"; timeEmoji = "🐢"
+        }
+    
+        document.getElementById(idTimeResult).innerHTML =
+            `<span style="color:${timeColor}">
+            ${timeEmoji} ${timePerItem.toFixed(2)} นาที/ข้อ (${timeLevel})
+            </span>`
     }
 
     document.getElementById(idAcc).innerHTML =
         `<span style="color:${color}">
         ${emoji} ${percent.toFixed(2)}% (${level})
-        </span>`
-
-    document.getElementById(idTimeResult).innerHTML =
-        `<span style="color:${timeColor}">
-        ${timeEmoji} ${timePerItem.toFixed(2)} นาที/ข้อ (${timeLevel})
         </span>`
 }
